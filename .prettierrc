@@ -1,0 +1,6 @@
+{
+  "singleQuote": true,
+  "trailingComma": "all",
+  "usePrettierrc": true,
+  "parser": "flow"
+}
