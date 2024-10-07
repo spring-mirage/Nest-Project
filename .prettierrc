@@ -1,7 +1,7 @@
 {
   "singleQuote": true,
   "trailingComma": "all",
-  "usePrettierrc": true,
+  "usePrettierrc": false,
   "parser": "flow",
   "useTabs": true,
   "tabWidth": 4
