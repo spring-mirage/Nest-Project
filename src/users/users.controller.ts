@@ -1,32 +1,32 @@
-import { Controller, DefaultValuePipe, Get, Param, ParseIntPipe, Post, Query } from '@nestjs/common';
+import { Body, Controller, DefaultValuePipe, Get, Param, ParseIntPipe, Post, Query, ValidationPipe } from '@nestjs/common';
 import { UsersService } from './users.service';
+import { CreateUserDto } from './DTOs/create-user.dto';
+
+
 //localhost:3000/users
 @Controller('users')
 export class UsersController {
-    UserService: UsersService;
+    userService: UsersService;
     constructor() {
-        this.UserService = new UsersService();
+        this.userService = new UsersService();
     }
 
     @Get()
     getUsers(@Query('limit', new DefaultValuePipe(10), ParseIntPipe) limit:number, @Query('page', new DefaultValuePipe(1), ParseIntPipe) page: number) {
         console.log(limit, page)
-        return this.UserService.getAllUsers();
+        return this.userService.getAllUsers();
     }
 
     @Get(':id')
     getUserById(@Param('id', ParseIntPipe) id: number) {
-        return this.UserService.getUserById(id);
+        return this.userService.getUserById(id);
     }
 
     @Post()
-    createUsers() {
-        const user = {id: 6, name: 'John Doe', age: 30, gender: 'male', isMarried: false}
-        this.UserService.createUser(user);
-        return 'User created';
+    createUsers(@Body(new ValidationPipe()) user: CreateUserDto ){
+        // this.userService.createUser(user);
+        return 'A new user has been created';
     }
-
-    
 }
 
 
