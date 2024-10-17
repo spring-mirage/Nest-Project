@@ -1,7 +1,8 @@
-import { Body, Controller, DefaultValuePipe, Get, Param, ParseIntPipe, Post, Query } from '@nestjs/common';
+import { Body, Controller, DefaultValuePipe, Get, Param, ParseIntPipe, Patch, Post, Query } from '@nestjs/common';
 import { UsersService } from './users.service';
 import { CreateUserDto } from './DTOs/create-user.dto';
 import { GetUserParamDto } from './DTOs/get-user.param.dto';
+import { UpdateUserDto } from './DTOs/update.dto';
 
 
 //localhost:3000/users
@@ -32,6 +33,12 @@ export class UsersController {
         // this.userService.createUser(user);
         console.log(user instanceof CreateUserDto);
         return 'A new user has been created';
+    }
+
+    @Patch()
+    updateUser(@Body() user: UpdateUserDto) {
+        console.log(user);
+        return 'User has been updated';
     }
 }
 
