@@ -8,9 +8,8 @@ import { UpdateUserDto } from './DTOs/update.dto';
 //localhost:3000/users
 @Controller('users')
 export class UsersController {
-    userService: UsersService;
-    constructor() {
-        this.userService = new UsersService();
+    constructor(private userService: UsersService) {
+        
     }
 
     @Get(':isMarried?')
